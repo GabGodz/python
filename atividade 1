@@ -1,0 +1,25 @@
+# Função para calcular a média das notas
+def calcular_media(notas):
+    return sum(notas) / len(notas)
+
+# Função para ler as notas do aluno
+def ler_notas():
+    notas = []
+    for i in range(4):
+        nota = float(input("Digite a {}ª nota: ".format(i+1)))
+        notas.append(nota)
+    return notas
+
+# Solicitar os dados do aluno
+nome = input("Digite o nome do aluno: ")
+idade = int(input("Digite a idade do aluno: "))
+notas = ler_notas()
+
+# Calcular a média das notas
+media = calcular_media(notas)
+
+# Mostrar os dados do aluno
+print("\nNome:", nome)
+print("Idade:", idade)
+print("Notas:", notas)
+print("Média:", media)
