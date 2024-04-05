@@ -1,0 +1,59 @@
+# Função para mostrar o nome e idade do usuário
+def mostrar_nome_idade(nome, idade):
+    print("Nome:", nome)
+    print("Idade:", idade)
+
+# Função para mostrar o nome e e-mail do usuário
+def mostrar_nome_email(nome, email):
+    print("Nome:", nome)
+    print("E-mail:", email)
+
+# Função para mostrar o nome e telefone do usuário
+def mostrar_nome_telefone(nome, telefone):
+    print("Nome:", nome)
+    print("Telefone:", telefone)
+
+# Função para mostrar todas as informações do usuário
+def mostrar_todas_informacoes(nome, idade, email, telefone):
+    print("Nome:", nome)
+    print("Idade:", idade)
+    print("E-mail:", email)
+    print("Telefone:", telefone)
+
+# Solicitar os dados do usuário
+nome = input("Digite seu nome: ")
+idade = int(input("Digite sua idade: "))
+email = input("Digite seu e-mail: ")
+telefone = input("Digite seu telefone: ")
+
+opcao = None
+while opcao != '0':
+    # Limpar a tela
+    print("\n" * 50)
+
+    # Exibir o menu
+    print("Menu:")
+    print("1 - Mostrar nome e idade")
+    print("2 - Mostrar nome e e-mail")
+    print("3 - Mostrar nome e telefone")
+    print("4 - Mostrar todas as informações")
+    print("0 - Sair do programa")
+    opcao = input("Escolha uma opção: ")
+
+    # Processar a opção escolhida pelo usuário
+    if opcao == '1':
+        mostrar_nome_idade(nome, idade)
+    elif opcao == '2':
+        mostrar_nome_email(nome, email)
+    elif opcao == '3':
+        mostrar_nome_telefone(nome, telefone)
+    elif opcao == '4':
+        mostrar_todas_informacoes(nome, idade, email, telefone)
+    elif opcao == '0':
+        print("Saindo do programa...")
+    else:
+        print("Opção inválida. Tente novamente.")
+
+    # Pausa para o usuário visualizar o resultado
+    input("\nPressione Enter para continuar...")
+
