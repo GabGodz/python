@@ -1,0 +1,26 @@
+# Lendo a descrição do produto, a quantidade adquirida e o preço unitário
+descricao = input("Digite a descrição do produto: ")
+quantidade = int(input("Digite a quantidade adquirida: "))
+preco_unitario = float(input("Digite o preço unitário: "))
+
+# Calculando o total
+total = quantidade * preco_unitario
+
+# Calculando o desconto com base na quantidade adquirida
+if quantidade <= 5:
+    desconto = total * 0.02
+elif quantidade > 5 and quantidade <= 10:
+    desconto = total * 0.03
+else:
+    desconto = total * 0.05
+
+# Calculando o total a pagar
+total_a_pagar = total - desconto
+
+# Exibindo os resultados
+print("Descrição do produto:", descricao)
+print("Quantidade adquirida:", quantidade)
+print("Preço unitário:", preco_unitario)
+print("Total:", total)
+print("Desconto:", desconto)
+print("Total a pagar:", total_a_pagar)
