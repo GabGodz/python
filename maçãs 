@@ -1,0 +1,27 @@
+def inicio():
+    # Definição dos preços das frutas
+    preco_morango_ate_5kg = 2.50
+    preco_morango_acima_5kg = 2.20
+    preco_maca_ate_5kg = 1.80
+    preco_maca_acima_5kg = 1.50
+
+    # Entrada da quantidade (em Kg) de morangos e maçãs
+    kg_morango = float(input("Informe a quantidade (em Kg) de morangos: "))
+    kg_maca = float(input("Informe a quantidade (em Kg) de maçãs: "))
+
+    # Cálculo do valor a ser pago pelo cliente
+    valor_total_morango = kg_morango * (preco_morango_ate_5kg if kg_morango <= 5 else preco_morango_acima_5kg)
+    valor_total_maca = kg_maca * (preco_maca_ate_5kg if kg_maca <= 5 else preco_maca_acima_5kg)
+
+    # Cálculo do valor total da compra
+    valor_total_compra = valor_total_morango + valor_total_maca
+
+    # Verificação do desconto
+    if kg_morango + kg_maca > 8 or valor_total_compra > 25.00:
+        valor_total_compra -= 0.10 * valor_total_compra
+
+    # Exibição do valor a ser pago pelo cliente
+    print("O valor a ser pago pelo cliente é: R$", valor_total_compra)
+
+# Chamada da função inicio
+inicio()
