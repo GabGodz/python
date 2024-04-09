@@ -1,0 +1,25 @@
+# Inicializando variáveis para contar números pares e ímpares
+numeros_pares = 0
+numeros_impares = 0
+
+# Pedindo ao usuário para inserir 5 números inteiros
+print("Insira 5 números inteiros:")
+numeros = []
+for i in range(5):
+    numero = int(input(f"Número {i+1}: "))
+    numeros.append(numero)
+
+# Calculando a soma dos números
+soma = sum(numeros)
+
+# Contando números pares e ímpares
+for numero in numeros:
+    if numero % 2 == 0:
+        numeros_pares += 1
+    else:
+        numeros_impares += 1
+
+# Exibindo os resultados
+print("Soma dos números:", soma)
+print("Quantidade de números pares:", numeros_pares)
+print("Quantidade de números ímpares:", numeros_impares)
