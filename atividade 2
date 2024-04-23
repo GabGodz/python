@@ -1,0 +1,23 @@
+# Função para verificar se um número é positivo, par e inteiro
+def verificar_numero(numero):
+    return numero > 0 and numero % 2 == 0 and isinstance(numero, int)
+
+# Lista para armazenar os valores
+valores = []
+
+# Solicitar 6 valores ao usuário
+while len(valores) < 6:
+    valor = input("Digite um número inteiro, positivo e par: ")
+    try:
+        valor = int(valor)
+        if verificar_numero(valor):
+            valores.append(valor)
+        else:
+            print("Por favor, digite um número inteiro, positivo e par.")
+    except ValueError:
+        print("Por favor, digite um número inteiro, positivo e par.")
+
+# Exibir os valores lidos na ordem inversa
+print("\nValores na ordem inversa:")
+for valor in reversed(valores):
+    print(valor)
