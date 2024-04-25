@@ -1,0 +1,65 @@
+# Definir o cardápio
+cardapio = {
+    1: {"nome": "Pizza Margherita", "preco": 25.00},
+    2: {"nome": "Lasanha à Bolonhesa", "preco": 20.00},
+    3: {"nome": "Filé Mignon ao Molho Madeira", "preco": 35.00},
+    4: {"nome": "Salmão Grelhado", "preco": 30.00},
+    5: {"nome": "Risoto de Funghi", "preco": 22.00},
+    6: {"nome": "Spaghetti Carbonara", "preco": 18.00},
+    7: {"nome": "Frango à Parmegiana", "preco": 23.00}
+}
+
+# Inicializar variáveis
+pedido = []
+total = 0
+
+# Solicitar pedidos ao usuário
+while True:
+    print("\nCardápio:")
+    for codigo, prato in cardapio.items():
+        print(f"{codigo}: {prato['nome']} - R${prato['preco']:.2f}")
+    
+    codigo = int(input("\nDigite o código do prato desejado (ou 0 para finalizar): "))
+    
+    if codigo == 0:
+        break
+    
+    if codigo not in cardapio:
+        print("Código inválido. Por favor, escolha uma opção válida.")
+        continue
+    
+    pedido.append(cardapio[codigo])
+    total += cardapio[codigo]["preco"]
+    
+    mais_um_pedido = input("Deseja fazer mais um pedido? (s/n): ")
+    if mais_um_pedido.lower() != 's':
+        break
+
+# Solicitar forma de pagamento
+forma_pagamento = input("\nEscolha a forma de pagamento (à vista ou à prazo): ").lower()
+
+# Calcular desconto ou acréscimo
+if forma_pagamento == "à vista":
+    desconto = total * 0.10
+    total -= desconto
+elif forma_pagamento == "à prazo":
+    acrescimo = total * 0.10
+    total += acrescimo
+else:
+    print("Forma de pagamento inválida. Pagamento considerado à vista.")
+    desconto = total * 0.10
+    total -= desconto
+
+# Exibir o resumo do pedido
+print("\nResumo do Pedido:")
+for prato in pedido:
+    print(f"{prato['nome']} - R${prato['preco']:.2f}")
+
+print(f"\nForma de Pagamento: {forma_pagamento.capitalize()}")
+if forma_pagamento == "à vista":
+    print(f"Desconto: R${desconto:.2f}")
+elif forma_pagamento == "à prazo":
+    print(f"Acréscimo: R${acrescimo:.2f}")
+
+print(f"\nSubtotal: R${total:.2f}")
+print(f"Total a Pagar: R${total:.2f}")
