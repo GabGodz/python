@@ -1,0 +1,10 @@
+  - media_geral: Média de todos os números.
+  - numeros_invertidos: Os números na ordem inversa.
+- quantidade_pares: Quantidade de números pares.
+  - quantidade_impares: Quantidade de números ímpares.
+ - quantidade_positivos: Quantidade de números positivos.
+  - quantidade_negativos: Quantidade de números negativos.
+- maior_numero: O maior número.
+  - menor_numero: O menor número.
+- media_pares: Média dos números pares.
+  - media_impares: Média dos números ímpares.
