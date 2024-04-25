@@ -1,0 +1,61 @@
+# Inicializar variáveis
+numeros = []
+positivos = 0
+pares = 0
+impares = 0
+soma_total = 0
+soma_pares = 0
+soma_impares = 0
+
+# Solicitar números ao usuário até que seja inserido o número 0
+while True:
+    numero = int(input("Digite um número inteiro (digite 0 para parar): "))
+    
+    # Verificar se o número é zero para encerrar o loop
+    if numero == 0:
+        break
+    
+    numeros.append(numero)
+    soma_total += numero
+    
+    # Contar números positivos, negativos, pares e ímpares
+    if numero > 0:
+        positivos += 1
+    elif numero < 0:
+        negativos += 1
+    
+    if numero % 2 == 0:
+        pares += 1
+        soma_pares += numero
+    else:
+        impares += 1
+        soma_impares += numero
+
+# Calcular métricas adicionais
+media_geral = soma_total / len(numeros)
+numeros_invertidos = list(reversed(numeros))
+maior_numero = max(numeros)
+menor_numero = min(numeros)
+
+# Lidar com divisão por zero para evitar erros
+if pares > 0:
+    media_pares = soma_pares / pares
+else:
+    media_pares = 0
+
+if impares > 0:
+    media_impares = soma_impares / impares
+else:
+    media_impares = 0
+
+# Exibir resultados
+print(f"Media Geral: {media_geral}")
+print(f"Números Invertidos: {numeros_invertidos}")
+print(f"Quantidade de Pares: {pares}")
+print(f"Quantidade de Impares: {impares}")
+print(f"Quantidade de Positivos: {positivos}")
+print(f"Quantidade de Negativos: {negativos}")
+print(f"Maior Numero: {maior_numero}")
+print(f"Menor Numero: {menor_numero}")
+print(f"Media de Pares: {media_pares}")
+print(f"Media de Impares: {media_impares}")
