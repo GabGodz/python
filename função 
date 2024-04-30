@@ -1,0 +1,27 @@
+import os
+
+def clear_screen():
+    # Limpar a tela usando o comando 'clear' no Linux
+    os.system('clear')
+
+def calcular_media_e_mostrar_mensagem(num1, num2):
+    # Calcular a média dos dois números
+    media = (num1 + num2) / 2
+    
+    # Limpar a tela antes de mostrar a mensagem
+    clear_screen()
+    
+    # Mostrar mensagem com a média calculada
+    print(f"A média de {num1} e {num2} é: {media}")
+
+# Função principal para interagir com o usuário
+def main():
+    # Solicitar dois números ao usuário
+    num1 = float(input("Digite o primeiro número: "))
+    num2 = float(input("Digite o segundo número: "))
+    
+    # Calcular a média e mostrar a mensagem
+    calcular_media_e_mostrar_mensagem(num1, num2)
+
+# Chamar a função principal para iniciar o programa
+main()
