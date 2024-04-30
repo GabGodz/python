@@ -1,0 +1,19 @@
+def calcular_preco_inflacionado(preco):
+    if preco < 100:
+        preco_inflacionado = preco * 1.1  # inflação de 10% se o preço for menor que 100
+    else:
+        preco_inflacionado = preco * 1.2  # inflação de 20% se o preço for 100 ou mais
+    
+    return preco_inflacionado
+
+# Solicita o preço do produto ao usuário
+try:
+    preco_produto = float(input("Digite o preço do produto: "))
+except ValueError:
+    print("Valor inválido. Por favor, insira um número válido.")
+else:
+    # Chama a função para calcular o preço inflacionado
+    preco_inflacionado = calcular_preco_inflacionado(preco_produto)
+
+    # Exibe o preço inflacionado
+    print(f"O preço inflacionado do produto é: R${preco_inflacionado:.2f}")
