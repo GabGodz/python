@@ -1,0 +1,16 @@
+def tabuada(numero):
+    print(f"Tabuada do {numero}:")
+    for i in range(1, 11):
+        resultado = numero * i
+        print(f"{numero} x {i} = {resultado}")
+
+# Função principal para interagir com o usuário
+def main():
+    # Solicitar ao usuário que digite um número
+    numero = int(input("Digite um número para ver a tabuada: "))
+    
+    # Chamar a função para exibir a tabuada do número fornecido
+    tabuada(numero)
+
+# Chamar a função principal para iniciar o programa
+main()
