@@ -1,0 +1,76 @@
+import os
+
+def logoSenai():
+    os.system("cls || clear")
+    print("=== SENAI === ")
+
+def calcularIMC(peso, altura):
+    return peso / (altura ** 2)
+
+def classificarIMC(imc):
+    if imc < 18.5:
+        return "Abaixo do peso"
+    elif 18.5 <= imc < 25:
+        return "Peso normal"
+    elif 25 <= imc < 30:
+        return "Sobrepeso"
+    elif 30 <= imc < 35:
+        return "Obesidade grau I"
+    elif 35 <= imc < 40:
+        return "Obesidade grau II"
+    else:
+        return "Obesidade grau III (mórbida)"
+
+def obterSobrenome(nome_completo):
+    partes_nome = nome_completo.split()
+    return partes_nome[-1]  # Retorna o último elemento da lista, que é o sobrenome
+
+def exibirDadosUsuarios(nomes, sobrenomes, idades, alturas, pesos, imcs):
+    logoSenai()
+    print("\nDados dos usuários:")
+    for i in range(len(nomes)):
+        nome_completo = nomes[i] + " " + sobrenomes[i]
+        print(f"Usuário {i+1}:")
+        print("Nome:", nome_completo)
+        print("Idade:", idades[i])
+        print("Altura:", alturas[i], "metros")
+        print("Peso:", pesos[i], "quilogramas")
+        print("IMC:", imcs[i])
+        print("Situação:", classificarIMC(imcs[i]))
+        print()
+
+# Definindo listas vazias para armazenar os dados dos usuários
+nomes = []
+sobrenomes = []
+idades = []
+alturas = []
+pesos = []
+imcs = []
+
+# Solicitando os dados dos usuários em um loop
+while True:
+    logoSenai()
+    nome = input("Digite o nome do usuário (ou digite 'sair' para encerrar): ")
+    
+    # Verificando se o usuário quer sair
+    if nome.lower() == 'sair':
+        break
+    
+    sobrenome = input("Digite o sobrenome do usuário: ")
+    idade = int(input("Digite a idade do usuário: "))
+    altura = float(input("Digite a altura do usuário (em metros): "))
+    peso = float(input("Digite o peso do usuário (em quilogramas): "))
+    
+    # Adicionando os dados as listas
+    nomes.append(nome)
+    sobrenomes.append(sobrenome)
+    idades.append(idade)
+    alturas.append(altura)
+    pesos.append(peso)
+    
+    # Calculando o IMC e adicionando a lista de IMC
+    imc = calcularIMC(peso, altura)
+    imcs.append(imc)
+
+# Exibindo os dados armazenados com informações adicionais
+exibirDadosUsuarios(nomes, sobrenomes, idades, alturas, pesos, imcs)
