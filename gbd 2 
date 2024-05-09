@@ -1,0 +1,63 @@
+# Função para calcular o desconto do INSS
+def calcular_desconto_inss(salario_base):
+    faixas = [(1100, 0.075), (2203.48, 0.09), (3305.22, 0.12), (6433.57, 0.14)]
+    max_desconto = 854.36
+    
+    for limite, taxa in faixas:
+        if salario_base <= limite:
+            desconto = min(salario_base * taxa, max_desconto)
+            return desconto
+    
+    return max_desconto
+
+# Função para calcular o desconto do IRRF
+def calcular_desconto_irrf(salario_base, dependente):
+    faixas = [(1903.98, 0, 0), (2826.65, 0.075, 142.8), (3751.05, 0.15, 354.8), (4664.68, 0.225, 636.13), (float('inf'), 0.275, 869.36)]
+    
+    for limite, taxa, deducao in faixas:
+        if salario_base <= limite:
+            desconto_irrf = (salario_base * taxa) - (dependente * 189.59)
+            return max(desconto_irrf - deducao, 0)
+    
+    return 0
+
+# Função para calcular o desconto do vale transporte
+def calcular_desconto_vt(salario_base, opcao_vt):
+    if opcao_vt.lower() == 's':
+        return salario_base * 0.06
+    else:
+        return 0
+
+# Função para calcular o desconto do vale refeição
+def calcular_desconto_vr(valor_vr):
+    return valor_vr * 0.20
+
+# Função para calcular o salário líquido
+def calcular_salario_liquido(salario_base, opcao_vt, valor_vr):
+    desconto_inss = calcular_desconto_inss(salario_base)
+    desconto_irrf = calcular_desconto_irrf(salario_base, 1)  # Considerando 1 dependente
+    desconto_vt = calcular_desconto_vt(salario_base, opcao_vt)
+    desconto_vr = calcular_desconto_vr(valor_vr)
+    desconto_plano_saude = 150
+    
+    salario_liquido = salario_base - desconto_inss - desconto_irrf - desconto_vt - desconto_vr - desconto_plano_saude
+    return salario_liquido
+
+# Função principal para interação com o usuário
+def main():
+    matricula = input("Digite a matrícula: ")
+    senha = input("Digite a senha: ")
+    
+    # Aqui poderia ser implementada a autenticação da matrícula e senha
+    
+    salario_base = float(input("Digite o salário base do funcionário: "))
+    opcao_vt = input("Deseja receber vale transporte? (s/n): ")
+    valor_vr = float(input("Digite o valor do vale refeição fornecido pela empresa: "))
+    
+    salario_liquido = calcular_salario_liquido(salario_base, opcao_vt, valor_vr)
+    
+    print(f"O salário líquido do funcionário é: R$ {salario_liquido:.2f}")
+
+# Executar o programa
+if __name__ == "__main__":
+    main()
