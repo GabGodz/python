@@ -1,0 +1,26 @@
+class Usuario:
+    def __init__(self, nome, idade, peso, altura):
+        self.nome = nome
+        self.idade = idade
+        self.peso = peso
+        self.altura = altura
+
+    def salvar_dados(self, nome_arquivo):
+        with open(nome_arquivo, 'w') as arquivo:
+            arquivo.write(f"Nome: {self.nome}\n")
+            arquivo.write(f"Idade: {self.idade}\n")
+            arquivo.write(f"Peso: {self.peso}\n")
+            arquivo.write(f"Altura: {self.altura}\n")
+
+def main():
+    nome = input("Digite o seu nome: ")
+    idade = input("Digite a sua idade: ")
+    peso = input("Digite o seu peso: ")
+    altura = input("Digite a sua altura: ")
+
+    usuario = Usuario(nome, idade, peso, altura)
+    usuario.salvar_dados("Dados_pessoais.txt")
+    print("Dados salvos com sucesso!")
+
+if __name__ == "__main__":
+    main()
