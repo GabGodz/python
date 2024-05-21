@@ -1,0 +1,28 @@
+def ler_informacoes_do_livro():
+    nome = input("Digite o nome do livro: ")
+    autor = input("Digite o autor do livro: ")
+    categoria = input("Digite a categoria do livro: ")
+    preco = float(input("Digite o preço do livro: "))
+    return nome, autor, categoria, preco
+
+def salvar_livros_em_arquivo(livros, nome_arquivo="Catálogo Livros.txt"):
+    with open(nome_arquivo, "w") as arquivo:
+        for livro in livros:
+            arquivo.write(f"Nome: {livro[0]}\n")
+            arquivo.write(f"Autor: {livro[1]}\n")
+            arquivo.write(f"Categoria: {livro[2]}\n")
+            arquivo.write(f"Preço: {livro[3]:.2f}\n")
+            arquivo.write("\n")
+
+def main():
+    livros = []
+    for i in range(3):
+        print(f"\nInforme os dados do livro {i + 1}:")
+        livro = ler_informacoes_do_livro()
+        livros.append(livro)
+    
+    salvar_livros_em_arquivo(livros)
+    print("\nOs dados dos livros foram salvos em 'Catálogo Livros.txt'.")
+
+if __name__ == "__main__":
+    main()
