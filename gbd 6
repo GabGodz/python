@@ -1,0 +1,77 @@
+# Dicionários para armazenar dados
+livros = {}
+usuarios = {}
+emprestimos = {}
+
+# Função para cadastrar um livro
+def cadastrar_livro(isbn, titulo, autor):
+    if isbn in livros:
+        print("Livro já cadastrado.")
+    else:
+        livros[isbn] = {'titulo': titulo, 'autor': autor, 'disponivel': True}
+        print(f"Livro '{titulo}' cadastrado com sucesso.")
+
+# Função para cadastrar um usuário
+def cadastrar_usuario(id_usuario, nome):
+    if id_usuario in usuarios:
+        print("Usuário já cadastrado.")
+    else:
+        usuarios[id_usuario] = {'nome': nome}
+        print(f"Usuário '{nome}' cadastrado com sucesso.")
+
+# Função para realizar um empréstimo de livro
+def emprestar_livro(isbn, id_usuario):
+    if isbn not in livros:
+        print("Livro não encontrado.")
+    elif not livros[isbn]['disponivel']:
+        print("Livro indisponível para empréstimo.")
+    elif id_usuario not in usuarios:
+        print("Usuário não encontrado.")
+    else:
+        livros[isbn]['disponivel'] = False
+        emprestimos[isbn] = id_usuario
+        print(f"Livro '{livros[isbn]['titulo']}' emprestado para {usuarios[id_usuario]['nome']}.")
+
+# Função para realizar a devolução de livro
+def devolver_livro(isbn):
+    if isbn not in emprestimos:
+        print("Livro não está emprestado.")
+    else:
+        id_usuario = emprestimos.pop(isbn)
+        livros[isbn]['disponivel'] = True
+        print(f"Livro '{livros[isbn]['titulo']}' devolvido por {usuarios[id_usuario]['nome']}.")
+
+def main():
+    while True:
+        print("\nSistema de Gestão de Biblioteca")
+        print("1. Cadastrar Livro")
+        print("2. Cadastrar Usuário")
+        print("3. Empréstimo de Livro")
+        print("4. Devolução de Livro")
+        print("5. Sair")
+        
+        opcao = input("Escolha uma opção: ")
+        
+        if opcao == "1":
+            isbn = input("Digite o ISBN do livro: ")
+            titulo = input("Digite o título do livro: ")
+            autor = input("Digite o autor do livro: ")
+            cadastrar_livro(isbn, titulo, autor)
+        elif opcao == "2":
+            id_usuario = input("Digite o ID do usuário: ")
+            nome = input("Digite o nome do usuário: ")
+            cadastrar_usuario(id_usuario, nome)
+        elif opcao == "3":
+            isbn = input("Digite o ISBN do livro: ")
+            id_usuario = input("Digite o ID do usuário: ")
+            emprestar_livro(isbn, id_usuario)
+        elif opcao == "4":
+            isbn = input("Digite o ISBN do livro: ")
+            devolver_livro(isbn)
+        elif opcao == "5":
+            break
+        else:
+            print("Opção inválida. Tente novamente.")
+
+if __name__ == "__main__":
+    main()
