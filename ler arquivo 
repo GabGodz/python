@@ -1,0 +1,15 @@
+def ler_dados():
+    try:
+        with open("Dados_pessoais.txt", "r") as arquivo:
+            dados = arquivo.readlines()
+            for linha in dados:
+                print(linha.strip())
+    except FileNotFoundError:
+        print("O arquivo 'Dados_pessoais.txt' não foi encontrado.")
+
+def main():
+    print("Lendo os dados salvos:")
+    ler_dados()
+
+if __name__ == "__main__":
+    main()
