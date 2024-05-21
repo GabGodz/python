@@ -1,0 +1,80 @@
+class Biblioteca:
+    def __init__(self):
+        self.livros = {}
+        self.usuarios = {}
+        self.emprestimos = {}
+
+    # Função para cadastrar um livro
+    def cadastrar_livro(self, isbn, titulo, autor):
+        if isbn in self.livros:
+            print("Livro já cadastrado.")
+        else:
+            self.livros[isbn] = {'titulo': titulo, 'autor': autor, 'disponivel': True}
+            print(f"Livro '{titulo}' cadastrado com sucesso.")
+
+    # Função para cadastrar um usuário
+    def cadastrar_usuario(self, id_usuario, nome):
+        if id_usuario in self.usuarios:
+            print("Usuário já cadastrado.")
+        else:
+            self.usuarios[id_usuario] = {'nome': nome}
+            print(f"Usuário '{nome}' cadastrado com sucesso.")
+
+    # Função para realizar um empréstimo de livro
+    def emprestar_livro(self, isbn, id_usuario):
+        if isbn not in self.livros:
+            print("Livro não encontrado.")
+        elif not self.livros[isbn]['disponivel']:
+            print("Livro indisponível para empréstimo.")
+        elif id_usuario not in self.usuarios:
+            print("Usuário não encontrado.")
+        else:
+            self.livros[isbn]['disponivel'] = False
+            self.emprestimos[isbn] = id_usuario
+            print(f"Livro '{self.livros[isbn]['titulo']}' emprestado para {self.usuarios[id_usuario]['nome']}.")
+
+    # Função para realizar a devolução de livro
+    def devolver_livro(self, isbn):
+        if isbn not in self.emprestimos:
+            print("Livro não está emprestado.")
+        else:
+            id_usuario = self.emprestimos.pop(isbn)
+            self.livros[isbn]['disponivel'] = True
+            print(f"Livro '{self.livros[isbn]['titulo']}' devolvido por {self.usuarios[id_usuario]['nome']}.")
+
+def main():
+    biblioteca = Biblioteca()
+    
+    while True:
+        print("\nSistema de Gestão de Biblioteca")
+        print("1. Cadastrar Livro")
+        print("2. Cadastrar Usuário")
+        print("3. Empréstimo de Livro")
+        print("4. Devolução de Livro")
+        print("5. Sair")
+        
+        opcao = input("Escolha uma opção: ")
+        
+        if opcao == "1":
+            isbn = input("Digite o ISBN do livro: ")
+            titulo = input("Digite o título do livro: ")
+            autor = input("Digite o autor do livro: ")
+            biblioteca.cadastrar_livro(isbn, titulo, autor)
+        elif opcao == "2":
+            id_usuario = input("Digite o ID do usuário: ")
+            nome = input("Digite o nome do usuário: ")
+            biblioteca.cadastrar_usuario(id_usuario, nome)
+        elif opcao == "3":
+            isbn = input("Digite o ISBN do livro: ")
+            id_usuario = input("Digite o ID do usuário: ")
+            biblioteca.emprestar_livro(isbn, id_usuario)
+        elif opcao == "4":
+            isbn = input("Digite o ISBN do livro: ")
+            biblioteca.devolver_livro(isbn)
+        elif opcao == "5":
+            break
+        else:
+            print("Opção inválida. Tente novamente.")
+
+if __name__ == "__main__":
+    main()
