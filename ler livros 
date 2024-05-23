@@ -14,6 +14,11 @@ def Salvar(livros, nome_arquivo="Catálogo Livros.txt"):
             arquivo.write(f"Preço: {livro[3]:.2f}\n")
             arquivo.write("\n")
 
+def exibir_conteudo_arquivo(nome_arquivo="Catálogo Livros.txt"):
+    with open(nome_arquivo, "r") as arquivo:
+        conteudo = arquivo.read()
+        print(conteudo)
+
 def main():
     livros = []
     for i in range(3):
@@ -23,6 +28,8 @@ def main():
     
     Salvar(livros)
     print("\nOs dados dos livros foram salvos em 'Catálogo Livros.txt'.")
+    print("\nExibindo o conteúdo do arquivo:\n")
+    exibir_conteudo_arquivo()
 
 if __name__ == "__main__":
     main()
