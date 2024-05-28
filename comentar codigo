@@ -1,0 +1,67 @@
+from dataclasses import dataclass
+
+@dataclass
+class Cliente:
+    # Classe Cliente contendo informações básicas do cliente.
+    nome: str  # Nome do cliente.
+    idade: str  # Idade do cliente.
+    cpf: str  # CPF do cliente.
+    cep: str  # CEP do cliente.
+    endereco: str  # Endereço do cliente.
+
+def obter_dados():
+    # Função para coletar dados de múltiplos clientes.
+    clientes = []
+    while True:
+        nome = input("Digite o nome: ")
+        idade = input("Digite a idade: ")
+        cpf = input("Digite o CPF: ")
+        cep = input("Digite o CEP: ")
+        endereco = input("Digite o endereço: ")
+
+        # Cria um novo objeto Cliente com os dados fornecidos.
+        cliente = Cliente(nome, idade, cpf, cep, endereco)
+        # Adiciona o cliente à lista de clientes.
+        clientes.append(cliente)
+
+        continuar = input("Deseja adicionar outro cliente? (s/n): ")
+        if continuar.lower() != 's':
+            break
+
+    # Retorna a lista de clientes.
+    return clientes
+
+def salvar_dados(clientes):
+    # Função para salvar dados dos clientes em um arquivo de texto.
+    with open("clientes.txt", "w") as arquivo:
+        for cliente in clientes:
+            # Formata os dados do cliente como uma linha de texto.
+            linha = f"{cliente.nome}, {cliente.idade}, {cliente.cpf}, {cliente.cep}, {cliente.endereco}"
+            # Escreve a linha no arquivo.
+            arquivo.write(linha + "\n")
+
+def ler_dados():
+    # Função para ler dados dos clientes de um arquivo de texto.
+    with open("clientes.txt", "r") as arquivo:
+        linhas = arquivo.readlines()
+
+    clientes = []
+    for linha in linhas:
+        # Divide a linha lida em componentes separados por vírgula.
+        nome, idade, cpf, cep, endereco = linha.strip().split(", ")
+        # Cria um novo objeto Cliente com os dados lidos.
+        cliente = Cliente(nome, idade, cpf, cep, endereco)
+        # Adiciona o cliente à lista de clientes.
+        clientes.append(cliente)
+
+    # Retorna a lista de clientes.
+    return clientes
+
+# Fluxo principal do script:
+clientes = obter_dados()  # Coleta dados dos clientes via obter_dados().
+salvar_dados(clientes)  # Salva os dados coletados em um arquivo via salvar_dados().
+
+clientes_lidos = ler_dados()  # Lê os dados do arquivo via ler_dados().
+for cliente in clientes_lidos:
+    # Imprime os dados dos clientes lidos do arquivo.
+    print(f"Nome: {cliente.nome}, Idade: {cliente.idade}, CPF: {cliente.cpf}, CEP: {cliente.cep}, Endereço: {cliente.endereco}")
